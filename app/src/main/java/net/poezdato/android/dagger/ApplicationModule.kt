@@ -13,10 +13,12 @@ import net.poezdato.android.PoezdatoApplication
  */
 
 @Module
-class AppModule {
+class ApplicationModule {
 
     @Provides
-    fun provideContext(application: PoezdatoApplication) = application
+    fun provideContext(application: PoezdatoApplication): Context {
+        return application
+    }
 
     @Provides
     fun provideSharedPreferences(context: Context): SharedPreferences {

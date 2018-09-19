@@ -12,11 +12,12 @@ import net.poezdato.android.PoezdatoApplication
  */
 
 @Component(modules = [
-    AppModule::class,
+    ApplicationModule::class,
     AndroidInjectionModule::class,
-    AndroidSupportInjectionModule::class
+    AndroidSupportInjectionModule::class,
+    AndroidBindingModule::class
 ])
-interface AppComponent : AndroidInjector<PoezdatoApplication> {
+interface ApplicationComponent : AndroidInjector<PoezdatoApplication> {
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<PoezdatoApplication>()
 }
