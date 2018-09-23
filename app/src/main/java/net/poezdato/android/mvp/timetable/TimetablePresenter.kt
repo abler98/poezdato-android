@@ -1,6 +1,7 @@
 package net.poezdato.android.mvp.timetable
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter
+import net.poezdato.android.data.entity.Route
 
 /**
  * Author: Sergey Semenko <abler98@gmail.com>
@@ -8,5 +9,5 @@ import com.hannesdorfmann.mosby3.mvp.MvpPresenter
  */
 
 interface TimetablePresenter : MvpPresenter<TimetableView> {
-    fun readValue()
+    fun loadTimetable(route: Route)
 }
