@@ -2,6 +2,7 @@ package net.poezdato.android.domain.retrofit.factory
 
 import net.poezdato.android.mock.server.MockRegistry
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 
 /**
@@ -10,9 +11,5 @@ import javax.inject.Inject
  */
 
 class MockRetrofitFactory @Inject constructor(private val registry: MockRegistry) : RetrofitFactory {
-
-    override fun <T> create(service: Class<T>): T {
-        return registry.find(service)
-    }
-
+    override fun <T : Any> create(service: KClass<T>) = registry.find(service)
 }

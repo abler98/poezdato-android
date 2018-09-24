@@ -27,7 +27,7 @@ class MockApiModule {
     @Provides
     fun provideMockRegistry(timetableApi: MockTimetableApi): MockRegistry {
         return MockRegistry.Builder()
-            .add(TimetableApi::class.java, timetableApi)
+            .add(TimetableApi::class, timetableApi)
             .build()
     }
 

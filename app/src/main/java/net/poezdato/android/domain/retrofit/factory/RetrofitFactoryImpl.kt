@@ -2,6 +2,7 @@ package net.poezdato.android.domain.retrofit.factory
 
 import retrofit2.Retrofit
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 /**
  * Author: Sergey Semenko <abler98@gmail.com>
@@ -9,9 +10,5 @@ import javax.inject.Inject
  */
 
 class RetrofitFactoryImpl @Inject constructor(private val retrofit: Retrofit) : RetrofitFactory {
-
-    override fun <T> create(service: Class<T>): T {
-        return retrofit.create(service)
-    }
-
+    override fun <T : Any> create(service: KClass<T>): T = retrofit.create(service.java)
 }

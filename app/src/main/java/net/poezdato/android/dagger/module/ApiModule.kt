@@ -19,7 +19,7 @@ class ApiModule {
 
     @Provides
     fun provideTimetableApi(factory: RetrofitFactory): TimetableApi {
-        return factory.create(TimetableApi::class.java)
+        return factory.create(TimetableApi::class)
     }
 
 }
