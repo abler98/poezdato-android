@@ -16,7 +16,7 @@ class MockTimetableApi @Inject constructor(mockRetrofit: MockRetrofit) : Timetab
 
     private val delegate = mockRetrofit.create(TimetableApi::class.java)
 
-    override fun getByRoute(origin: String, destination: String): Single<Timetable> {
+    override fun getByRoute(origin: TrainStation, destination: TrainStation): Single<Timetable> {
         val timetable = Timetable(
             listOf(
                 TimetableItem(
@@ -26,14 +26,13 @@ class MockTimetableApi @Inject constructor(mockRetrofit: MockRetrofit) : Timetab
                         TrainStation("2", "Казачья Лопань")
                     ),
                     Point(
-                        TrainStation(origin, "Южный Пост"),
+                        origin,
                         DateUtils.fromTimeString("04:42")
                     ),
                     Point(
-                        TrainStation(destination, "Безруковка"),
+                        destination,
                         DateUtils.fromTimeString("05:14")
-                    ),
-                    60 * 32
+                    )
                 ),
                 TimetableItem(
                     Train(TrainType.SUBURB, "6008"),
@@ -42,14 +41,13 @@ class MockTimetableApi @Inject constructor(mockRetrofit: MockRetrofit) : Timetab
                         TrainStation("2", "Казачья Лопань")
                     ),
                     Point(
-                        TrainStation(origin, "Южный Пост"),
+                        origin,
                         DateUtils.fromTimeString("05:24")
                     ),
                     Point(
-                        TrainStation(destination, "Безруковка"),
+                        destination,
                         DateUtils.fromTimeString("05:55")
-                    ),
-                    60 * 31
+                    )
                 ),
                 TimetableItem(
                     Train(TrainType.SUBURB, "6012"),
@@ -58,21 +56,20 @@ class MockTimetableApi @Inject constructor(mockRetrofit: MockRetrofit) : Timetab
                         TrainStation("2", "Казачья Лопань")
                     ),
                     Point(
-                        TrainStation(origin, "Южный Пост"),
+                        origin,
                         DateUtils.fromTimeString("07:02")
                     ),
                     Point(
-                        TrainStation(destination, "Безруковка"),
+                        destination,
                         DateUtils.fromTimeString("07:35")
-                    ),
-                    60 * 33
+                    )
                 )
             )
         )
         return delegate.returningResponse(timetable).getByRoute(origin, destination)
     }
 
-    override fun getByStation(station: String): Single<Timetable> {
+    override fun getByStation(station: TrainStation): Single<Timetable> {
         TODO("not implemented")
     }
 

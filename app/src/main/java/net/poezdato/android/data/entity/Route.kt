@@ -6,6 +6,6 @@ package net.poezdato.android.data.entity
  */
 
 data class Route(
-    val originStation: TrainStation,
-    val destinationStation: TrainStation
+    val origin: TrainStation,
+    val destination: TrainStation
 )

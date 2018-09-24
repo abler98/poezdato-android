@@ -2,6 +2,8 @@ package net.poezdato.android.api
 
 import io.reactivex.Single
 import net.poezdato.android.data.entity.Timetable
+import net.poezdato.android.data.entity.TrainStation
+import net.poezdato.android.domain.retrofit.type.JsonParam
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,9 +15,12 @@ import retrofit2.http.Path
 interface TimetableApi {
 
     @GET("timetable/route/{origin}/{destination}")
-    fun getByRoute(@Path("origin") origin: String, @Path("destination") destination: String): Single<Timetable>
+    fun getByRoute(
+        @JsonParam("id") @Path("origin") origin: TrainStation,
+        @JsonParam("id") @Path("destination") destination: TrainStation
+    ): Single<Timetable>
 
     @GET("timetable/station/{station}")
-    fun getByStation(@Path("station") station: String): Single<Timetable>
+    fun getByStation(@JsonParam("id") @Path("station") station: TrainStation): Single<Timetable>
 
 }

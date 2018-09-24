@@ -8,7 +8,6 @@ package net.poezdato.android.data.entity
 data class TimetableItem(
     val train: Train,
     val route: Route,
-    val originPoint: Point,
-    val destinationPoint: Point,
-    val duration: Int
+    val origin: Point,
+    val destination: Point
 )

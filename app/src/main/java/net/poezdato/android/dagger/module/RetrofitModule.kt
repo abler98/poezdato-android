@@ -7,6 +7,7 @@ import dagger.Lazy
 import dagger.Module
 import dagger.Provides
 import net.poezdato.android.R
+import net.poezdato.android.domain.retrofit.converter.JsonParameterConverterFactory
 import net.poezdato.android.domain.retrofit.factory.MockRetrofitFactory
 import net.poezdato.android.domain.retrofit.factory.RetrofitFactory
 import net.poezdato.android.domain.retrofit.factory.RetrofitFactoryImpl
@@ -38,6 +39,7 @@ class RetrofitModule {
             .client(httpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(JsonParameterConverterFactory(gson))
             .build();
     }
 

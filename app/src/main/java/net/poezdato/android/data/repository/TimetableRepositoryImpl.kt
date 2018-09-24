@@ -15,7 +15,7 @@ class TimetableRepositoryImpl @Inject constructor(private val service: Timetable
     TimetableRepository {
 
     override fun findByRoute(route: Route): Single<Timetable> {
-        return service.getByRoute(route.originStation.id, route.destinationStation.id)
+        return service.getByRoute(route.origin, route.destination)
     }
 
 }

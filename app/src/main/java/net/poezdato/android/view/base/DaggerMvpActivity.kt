@@ -8,7 +8,6 @@ import com.hannesdorfmann.mosby3.mvp.MvpView
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasFragmentInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
@@ -18,10 +17,9 @@ import javax.inject.Inject
  */
 
 abstract class DaggerMvpActivity<V : MvpView, P : MvpPresenter<V>> : MvpActivity<V, P>(),
-    HasFragmentInjector, HasSupportFragmentInjector {
+    HasSupportFragmentInjector {
 
     @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
-    @Inject lateinit var frameworkFragmentInjector: DispatchingAndroidInjector<android.app.Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -30,10 +28,6 @@ abstract class DaggerMvpActivity<V : MvpView, P : MvpPresenter<V>> : MvpActivity
 
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return supportFragmentInjector
-    }
-
-    override fun fragmentInjector(): AndroidInjector<android.app.Fragment> {
-        return frameworkFragmentInjector
     }
 
 }
