@@ -23,6 +23,18 @@ android {
         }
         debug {
             applicationIdSuffix '.debug'
+            versionNameSuffix "-debug"
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        api {
+            dimension "version"
+        }
+        mock {
+            dimension "version"
+            applicationIdSuffix ".mock"
+            versionNameSuffix "-mock"
         }
     }
 }
