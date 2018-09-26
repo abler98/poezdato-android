@@ -37,6 +37,9 @@ android {
             versionNameSuffix "-mock"
         }
     }
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -57,6 +60,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.squareup.retrofit2:retrofit-mock:2.4.0'
+    implementation 'com.hannesdorfmann.fragmentargs:annotation:4.0.0-RC1'
+    kapt 'com.hannesdorfmann.fragmentargs:processor:4.0.0-RC1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

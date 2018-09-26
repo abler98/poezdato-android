@@ -40,7 +40,7 @@ class RetrofitModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addConverterFactory(JsonParameterConverterFactory(gson))
-            .build();
+            .build()
     }
 
     @Provides

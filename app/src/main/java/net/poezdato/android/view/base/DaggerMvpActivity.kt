@@ -19,7 +19,8 @@ import javax.inject.Inject
 abstract class DaggerMvpActivity<V : MvpView, P : MvpPresenter<V>> : MvpActivity<V, P>(),
     HasSupportFragmentInjector {
 
-    @Inject lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+    @Inject
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)

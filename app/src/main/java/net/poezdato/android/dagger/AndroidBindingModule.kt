@@ -3,6 +3,7 @@ package net.poezdato.android.dagger
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import net.poezdato.android.view.timetable.TimetableActivity
+import net.poezdato.android.view.timetable.TimetableFragment
 import net.poezdato.android.view.timetable.TimetableModule
 
 /**
@@ -13,7 +14,10 @@ import net.poezdato.android.view.timetable.TimetableModule
 @Module
 abstract class AndroidBindingModule {
 
+    @ContributesAndroidInjector
+    abstract fun contributeTimetableActivityInjector(): TimetableActivity
+
     @ContributesAndroidInjector(modules = [TimetableModule::class])
-    abstract fun contributeTimetableActivityInjector(): TimetableActivity;
+    abstract fun contributeTimetableFragmentInjector(): TimetableFragment
 
 }

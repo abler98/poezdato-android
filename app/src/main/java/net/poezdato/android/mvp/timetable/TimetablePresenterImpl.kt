@@ -1,6 +1,6 @@
 package net.poezdato.android.mvp.timetable
 
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import com.hannesdorfmann.mosby3.mvp.MvpQueuingBasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import net.poezdato.android.data.entity.Route
@@ -13,12 +13,12 @@ import javax.inject.Inject
  */
 
 class TimetablePresenterImpl @Inject constructor(private val repository: TimetableRepository) :
-    MvpBasePresenter<TimetableView>(), TimetablePresenter {
+    MvpQueuingBasePresenter<TimetableView>(), TimetablePresenter {
 
     private val disposable = CompositeDisposable()
 
-    override fun detachView() {
-        super.detachView()
+    override fun destroy() {
+        super.destroy()
         disposable.clear()
     }
 
@@ -27,9 +27,9 @@ class TimetablePresenterImpl @Inject constructor(private val repository: Timetab
             repository.findByRoute(route)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
-                    ifViewAttached { it.showToast(result.toString()) }
+                    onceViewAttached { it.showToast(result.toString()) }
                 }, { error ->
-                    ifViewAttached { it.showToast(error.javaClass.name) }
+                    onceViewAttached { it.showToast(error.javaClass.name) }
                 })
         )
     }
