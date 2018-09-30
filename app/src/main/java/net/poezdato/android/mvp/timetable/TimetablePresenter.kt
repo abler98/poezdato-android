@@ -9,5 +9,5 @@ import net.poezdato.android.data.entity.Route
  */
 
 interface TimetablePresenter : MvpPresenter<TimetableView> {
-    fun loadTimetable(route: Route)
+    fun loadTimetable(route: Route, pullToRefresh: Boolean)
 }

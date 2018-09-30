@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Poezdato</string>
+    <string name="error_undefined">Неизвестная ошибка</string>
+    <string name="timetable_duration_text" formatted="false">%d мин.</string>
 </resources>

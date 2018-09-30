@@ -2,6 +2,7 @@ package net.poezdato.android.data.entity
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.util.concurrent.TimeUnit
 
 /**
  * Author: Sergey Semenko <abler98@gmail.com>
@@ -14,4 +15,11 @@ data class TimetableItem(
     val route: Route,
     val origin: Point,
     val destination: Point
-) : Parcelable
+) : Parcelable {
+
+    fun getDuration(unit: TimeUnit): Long {
+        val duration = destination.time.time - origin.time.time
+        return unit.convert(duration, TimeUnit.MILLISECONDS)
+    }
+
+}

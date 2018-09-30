@@ -5,6 +5,7 @@ import dagger.android.support.DaggerAppCompatActivity
 import net.poezdato.android.R
 import net.poezdato.android.data.entity.Route
 import net.poezdato.android.data.entity.TrainStation
+import net.poezdato.android.kotlin.ensureFragment
 
 /**
  * Author: Sergey Semenko <abler98@gmail.com>
@@ -17,11 +18,9 @@ class TimetableActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timetable)
 
-        supportFragmentManager.findFragmentById(R.id.timetableFragmentContainer).let {
+        ensureFragment(R.id.container) {
             val route = Route(TrainStation("1", "Южный Пост"), TrainStation("2", "Безруковка"))
-            supportFragmentManager.beginTransaction()
-                .add(R.id.timetableFragmentContainer, TimetableFragmentBuilder(route).build())
-                .commit()
+            TimetableFragmentBuilder(route).build()
         }
     }
 

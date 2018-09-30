@@ -22,14 +22,20 @@ class TimetablePresenterImpl @Inject constructor(private val repository: Timetab
         disposable.clear()
     }
 
-    override fun loadTimetable(route: Route) {
+    override fun loadTimetable(route: Route, pullToRefresh: Boolean) {
         disposable.add(
             repository.findByRoute(route)
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    onceViewAttached { view -> view.showLoading(false) }
+                }
                 .subscribe({ result ->
-                    onceViewAttached { it.showToast(result.toString()) }
+                    onceViewAttached { view ->
+                        view.setData(result)
+                        view.showContent()
+                    }
                 }, { error ->
-                    onceViewAttached { it.showToast(error.javaClass.name) }
+                    onceViewAttached { it.showError(error, false) }
                 })
         )
     }
